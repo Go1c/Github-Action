@@ -1,19 +1,20 @@
-name: easy-bilibili-daily-task
+name: Python application
+
 on:
   push:
     branches: [ master ]
-  schedule:
-    # 定时任务，在每天的5点执行任务
-    - cron: '0 22 * * *'
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
-    runs-on: ubuntu-latest    
-  steps:
+
+    runs-on: ubuntu-latest
+
+    steps:
     - uses: actions/checkout@v2
-    - name: Set up Python 3.9
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: 3.9
-
+        python-version: 3.8
     - name: Install dependencies
-      run: echo "wahhhh"
+      run: echo "🍏 This job's status is ${{ job.status }}."
