@@ -2,7 +2,7 @@ name: Python application
 
 on:
   schedule:
-    - cron: "11 5 * * *"
+    - cron: "18 5 * * *"
 jobs:
   build:
 
@@ -14,5 +14,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
-    - name: Install dependencies
-      run: echo "🍏 This job's status is ${{ job.status }}."
+    - name: Run Work
+      run: |
+        python main.py
