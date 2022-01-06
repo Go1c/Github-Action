@@ -16,4 +16,4 @@ jobs:
         python-version: 3.9
 
     - name: Install dependencies
-       - run: echo "wahhhh"
+      run: echo "wahhhh"
