@@ -7,17 +7,68 @@ def push_report(web_hook):
         "Content-Type": "application/json;charset=UTF-8"
     }
     message_body = {
-        "msg_type": "text",
+        "msg_type": "post",
         "content": {
-            "text": "消息推送展示项目：飞书\n" +
-                    ">>环境：测试环境 \n" +
-                    ">>类型：%s \n" % "消息推送" +
-                    ">>测试结果：%s \n" % "通过"
+            "post": {
+                "zh_cn": {
+                    "title": "订餐啦",
+                    "content": [
+                        [
+                            {
+                                "tag": "at",
+                                "user_id": "all",
+                                "user_name": "所有人"
+                            },
+                            {
+                                "tag": "text",
+                                "text": "<color=\"red\">今天有周会，对着自己的okr来一发?</color>"
+                            },
+                            {
+                                "tag": "a",
+                                "text": "点我订餐",
+                                "href": "https://applink.feishu.cn/T89MJUmq"
+                            },
+                        ]
+                    ]
+                }
+            }
         }
-
     }
-
-    ChatRob = requests.post(url=web_hook, json=message_body, headers=header)
+    message_body_card = {
+        "msg_type": "interactive",
+        "card": {
+            "config": {
+                # "wide_screen_mode": true,
+                # "enable_forward": true
+            },
+            "elements": [{
+                "tag": "div",
+                "text": {
+                    "content": "**可以辜负世界  但是不可以辜负自己的肚子**",
+                    "tag": "lark_md"
+                }
+            }, {
+                "actions": [{
+                    "tag": "button",
+                    "text": {
+                        "content": "点我订餐 :玫瑰:",
+                        "tag": "lark_md"
+                    },
+                    "url": "https://applink.feishu.cn/T89MJUmq",
+                    "type": "default",
+                    "value": {}
+                }],
+                "tag": "action"
+            }],
+            "header": {
+                "title": {
+                    "content": "订餐啦！！ 订餐啦！！！",
+                    "tag": "plain_text"
+                }
+            }
+        }
+    }
+    ChatRob = requests.post(url=web_hook, json=message_body_card, headers=header)
     opener = ChatRob.json()
 
     if opener["StatusMessage"] == "success":
