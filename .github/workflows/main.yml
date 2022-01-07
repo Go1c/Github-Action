@@ -1,10 +1,14 @@
 name: Python application
 
-on:
-  schedule:
+#on:
+ # schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron: '30 * * * *'
- 
+    #- cron: '30 * * * *'
+on:
+  push:
+    # 分支随意
+    branches:
+      - master
 jobs:
   build:
 
